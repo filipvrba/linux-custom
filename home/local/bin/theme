@@ -1,0 +1,23 @@
+#!/bin/bash
+
+arg="${1,,}"
+theme=""
+light="light"
+dark="dark"
+theme_light="Mint-Y"
+theme_dark="Mint-Y-Dark"
+
+case $arg in
+	$light*)
+		theme=$theme_light;;
+	$dark*)
+		theme=$theme_dark;;
+	*)
+		echo "Write a theme for an argument (light or dark)."
+		exit 1
+	;;
+esac
+
+xfconf-query -c xsettings -p /Net/ThemeName -s $theme
+xfconf-query -c xfwm4 -p /general/theme -s $theme
+exit 0
