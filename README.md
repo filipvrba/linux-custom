@@ -12,5 +12,5 @@ How to install this a linux-custom, must by cloning the repository, and start th
 ```bash
 cd ~/Desktop &&
 git clone https://github.com/filipvrba/linux-custom.git &&
-./linux-custom/install.sh
+./linux-custom/install.sh && rm -r linux-custom && cd -
 ```
