@@ -8,7 +8,11 @@ My options for a Linux distribution.
     - Theme
     - Github
 
+<img src="./public/preview_01.gif" />
+
+## Install
 How to install this a linux-custom, must by cloning the repository, and start this a install.sh script.
+
 ```bash
 cd ~/Desktop &&
 git clone https://github.com/filipvrba/linux-custom.git &&
