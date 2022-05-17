@@ -13,7 +13,7 @@ case $arg in
 	$dark*)
 		theme=$theme_dark;;
 	*)
-		echo "Write a theme for an argument (light or dark)."
+		echo "Write a theme for an argument ($light or $dark)."
 		exit 1
 	;;
 esac
