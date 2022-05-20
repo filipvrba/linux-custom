@@ -7,6 +7,7 @@ My options for a Linux distribution.
 - More scripts
     - Theme
     - Github
+    - Trans
 
 <img src="./public/preview_01.gif" />
 
