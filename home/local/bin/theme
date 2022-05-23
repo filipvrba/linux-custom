@@ -1,23 +1,39 @@
 #!/bin/bash
 
 arg="${1,,}"
-theme=""
 light="light"
 dark="dark"
+
+# Theme
+theme=""
 theme_light="Mint-Y"
 theme_dark="Mint-Y-Dark"
 
+# Background
+background=""
+bg_light="/usr/share/xfce4/backdrops/Mountain_Cloud.jpg"
+bg_dark="/usr/share/xfce4/backdrops/Bridge_Sunset.jpg"
+
 case $arg in
 	$light*)
-		theme=$theme_light;;
+		theme=$theme_light
+		background=$bg_light
+	;;
 	$dark*)
-		theme=$theme_dark;;
+		theme=$theme_dark
+		background=$bg_dark
+	;;
 	*)
 		echo "Write a theme for an argument ($light or $dark)."
 		exit 1
 	;;
 esac
 
+# Theme
 xfconf-query -c xsettings -p /Net/ThemeName -s $theme
 xfconf-query -c xfwm4 -p /general/theme -s $theme
+
+# Background
+xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorHDMI-1/workspace0/last-image -s $background
+
 exit 0
