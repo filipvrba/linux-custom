@@ -14,14 +14,22 @@ background=""
 bg_light="/usr/share/xfce4/backdrops/Mountain_Cloud.jpg"
 bg_dark="/usr/share/xfce4/backdrops/Bridge_Sunset.jpg"
 
+# VSCode
+theme_code() {
+	color=$1
+	theme_code="Default ${color^}+"
+}
+
 case $arg in
 	$light*)
 		theme=$theme_light
 		background=$bg_light
+		theme_code $light
 	;;
 	$dark*)
 		theme=$theme_dark
 		background=$bg_dark
+		theme_code $dark
 	;;
 	*)
 		echo "Write a theme for an argument ($light or $dark)."
@@ -35,5 +43,8 @@ xfconf-query -c xfwm4 -p /general/theme -s $theme
 
 # Background
 xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorHDMI-1/workspace0/last-image -s $background
+
+# VSCode
+python ~/.local/lib/jsch '/home/filip/.config/Code/User/settings.json' "workbench.colorTheme" "$theme_code"
 
 exit 0
