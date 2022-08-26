@@ -3,6 +3,7 @@
 arg="${1,,}"
 light="light"
 dark="dark"
+middle="gray"
 
 # Theme
 theme=""
@@ -11,8 +12,9 @@ theme_dark="Mint-Y-Dark"
 
 # Background
 background=""
-bg_light="/usr/share/xfce4/backdrops/Mountain_Cloud.jpg"
+bg_light="/usr/share/xfce4/backdrops/Surface.jpg"
 bg_dark="/usr/share/xfce4/backdrops/Bridge_Sunset.jpg"
+bg_middle="/usr/share/xfce4/backdrops/Grey-Scape.jpg"
 
 # VSCode
 theme_code() {
@@ -25,11 +27,19 @@ case $arg in
 		theme=$theme_light
 		background=$bg_light
 		theme_code $light
+		redshift -x
 	;;
 	$dark*)
 		theme=$theme_dark
 		background=$bg_dark
 		theme_code $dark
+		redshift -O 4500K
+	;;
+	$middle*)
+		theme=$theme_dark
+		background=$bg_middle
+		theme_code $dark
+		redshift -x
 	;;
 	*)
 		echo "Write a theme for an argument ($light or $dark)."
