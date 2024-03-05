@@ -1,0 +1,61 @@
+#!/bin/bash
+
+arg="${1,,}"
+light="light"
+dark="dark"
+middle="gray"
+
+# Theme
+theme=""
+theme_light="Yaru-bark"
+theme_dark="Yaru-bark-dark"
+
+# Background
+background=""
+bg_light="/usr/share/backgrounds/ubuntu-mate-photos/nattu-adnan-328570.jpg"
+bg_dark="/usr/share/backgrounds/ubuntu-mate-photos/stefan-stefancik-105374.jpg"
+bg_middle="/usr/share/backgrounds/ubuntu-mate-photos/andrew-ridley-54228.jpg"
+
+# VSCode
+theme_code() {
+	color=$1
+	theme_code="Default ${color^}+"
+}
+
+case $arg in
+	$light*)
+		theme=$theme_light
+		background=$bg_light
+		theme_code $light
+		redshift -x
+	;;
+	$dark*)
+		theme=$theme_dark
+		background=$bg_dark
+		theme_code $dark
+		redshift -O 4500K
+	;;
+	$middle*)
+		theme=$theme_dark
+		background=$bg_middle
+		theme_code $dark
+		redshift -x
+	;;
+	*)
+		echo "Write a theme for an argument ($light or $dark)."
+		exit 1
+	;;
+esac
+
+# Theme
+gsettings set org.mate.interface gtk-theme $theme
+gsettings set org.mate.interface icon-theme $theme
+gsettings set org.mate.Marco.general theme "${theme/-bark/''}"
+
+# Background
+gsettings set org.mate.background picture-filename $background
+
+# VSCode
+jsch "$HOME/.config/Code/User/settings.json" "workbench.colorTheme" "$theme_code"
+
+exit 0
